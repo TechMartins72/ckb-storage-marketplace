@@ -1,0 +1,16 @@
+[workspace]
+resolver = "2"
+members = [
+    "proof-verifier",
+    "deal-lock",
+    "escrow-lock",
+    "collateral-lock",
+]
+
+[profile.release]
+overflow-checks  = true
+opt-level        = "z"   # minimize binary size for CKB-VM
+lto              = true
+codegen-units    = 1
+panic            = "abort"
+strip            = true

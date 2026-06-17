@@ -1,0 +1,20 @@
+[package]
+name    = "collateral-lock"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "collateral-lock"
+path = "src/main.rs"
+
+[dependencies]
+ckb-std = { version = "1.1", features = ["dummy-atomic"] }
+bytes = { version = "1", default-features = false }
+
+[profile.release]
+overflow-checks = true
+opt-level = "s"      # optimize for size (vs "2" or "3" for speed)
+lto = true           # link-time optimization removes dead code
+codegen-units = 1    # allows more aggressive optimization
+panic = "abort"      # no unwinding support (shrinks binary, no-std safe)
+strip = true         # strip debug symbols in release builds

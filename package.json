@@ -1,0 +1,18 @@
+{
+  "name": "ckb-storage-marketplace",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": ["sdk"],
+  "scripts": {
+    "build:contracts": "cd contracts && capsule build --release",
+    "build:sdk": "cd sdk && npm run build",
+    "build": "npm run build:contracts && npm run build:sdk",
+    "test": "cd sdk && npm test",
+    "deploy:testnet": "npx ts-node scripts/deploy.ts",
+    "install:sdk": "cd sdk && npm install"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "ts-node": "^10.9.0"
+  }
+}

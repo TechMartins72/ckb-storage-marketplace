@@ -1,0 +1,18 @@
+[deployment]
+lock = "type"
+
+[[contracts]]
+name              = "proof-verifier"
+enable_debug_mode = false
+
+[[contracts]]
+name              = "deal-lock"
+enable_debug_mode = false
+
+[[contracts]]
+name              = "escrow-lock"
+enable_debug_mode = false
+
+[[contracts]]
+name              = "collateral-lock"
+enable_debug_mode = false

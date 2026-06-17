@@ -1,0 +1,49 @@
+// CKB Storage Marketplace — Molecule Schema
+// Compile with: moleculec --language rust --schema-file deal.mol > ../generated/deal.rs
+
+array Byte32 [byte; 32];
+array Uint64 [byte; 8];
+array Uint32 [byte; 4];
+array Uint8  [byte; 1];
+
+vector Bytes <byte>;
+
+// Mirrors CKB's native Script structure
+table Script {
+    code_hash: Byte32,
+    hash_type: Uint8,
+    args:      Bytes,
+}
+
+// Central on-chain deal descriptor stored in the deal cell's data field
+table DealParams {
+    content_hash:      Byte32,  // SHA-256 of the full file (for retrieval)
+    merkle_root:       Byte32,  // BLAKE2b Merkle root for PDP proofs
+    file_size:         Uint64,  // File size in bytes
+    deal_duration:     Uint64,  // Duration in CKB epochs (~4 hrs each)
+    challenge_freq:    Uint32,  // Proof required every N epochs
+    price_per_epoch:   Uint64,  // Shannons paid per epoch of storage
+    renter_lock:       Script,  // Renter's lock script (for refunds)
+    provider_lock:     Script,  // Provider's lock script (for payments)
+    start_epoch:       Uint64,  // Epoch when deal became active (0 = pending)
+    last_proof_epoch:  Uint64,  // Epoch of the last accepted proof
+    state:             Uint8,   // 0=pending, 1=active, 2=complete, 3=slashed
+}
+
+// Stored in the escrow cell's data field
+table EscrowData {
+    deal_cell_type_hash:  Byte32,  // Links this escrow to a specific deal
+    renter_lock_hash:     Byte32,  // For refund spending path
+    provider_lock_hash:   Byte32,  // For payment spending path
+    price_per_epoch:      Uint64,  // Shannons released per valid proof
+    total_epochs:         Uint64,  // Total epochs funded
+    epochs_paid:          Uint64,  // Epochs already released to provider
+}
+
+// Stored in the collateral cell's data field
+table CollateralData {
+    deal_cell_type_hash:  Byte32,
+    provider_lock_hash:   Byte32,
+    renter_lock_hash:     Byte32,
+    collateral_amount:    Uint64,  // Total locked CKB in shannons
+}

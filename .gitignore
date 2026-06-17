@@ -1,0 +1,19 @@
+# Directories
+sdk/
+tests/
+scripts/
+
+# Docs / explainers
+PHASE1_SETUP.md
+phase1-explained.html
+
+# Rust build artifacts
+contracts/target/
+contracts/build/
+
+# Node
+node_modules/
+
+# Environment
+.env
+*.key

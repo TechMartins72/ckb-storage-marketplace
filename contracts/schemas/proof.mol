@@ -1,0 +1,22 @@
+// Proof-of-Possession Schema
+// Included in transaction witness when a provider submits a proof
+
+import deal;
+
+// One node in the Merkle sibling path
+table MerklePathItem {
+    sibling_hash: Byte32,
+    is_left:      Uint8,  // 1 = sibling is left child, 0 = sibling is right child
+}
+
+vector MerklePathVec <MerklePathItem>;
+
+// Full proof submission — included in tx witness by the provider daemon
+table ProofSubmission {
+    deal_outpoint_tx_hash:   Byte32,      // Which deal this proof is for
+    deal_outpoint_index:     Uint32,
+    challenge_epoch:         Uint64,      // Epoch the challenge was issued
+    challenge_index:         Uint64,      // Chunk index that was challenged
+    leaf_data_hash:          Byte32,      // BLAKE2b hash of the challenged chunk
+    merkle_path:             MerklePathVec,
+}
