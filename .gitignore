@@ -1,7 +1,6 @@
 # Directories
 sdk/
 tests/
-scripts/
 
 # Docs / explainers
 PHASE1_SETUP.md
