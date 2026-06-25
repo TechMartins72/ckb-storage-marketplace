@@ -2,7 +2,9 @@
   "name": "ckb-storage-marketplace",
   "version": "0.1.0",
   "private": true,
-  "workspaces": ["sdk"],
+  "workspaces": [
+    "sdk"
+  ],
   "scripts": {
     "build:contracts": "cd contracts && capsule build --release",
     "build:sdk": "cd sdk && npm run build",
@@ -12,7 +14,13 @@
     "install:sdk": "cd sdk && npm install"
   },
   "devDependencies": {
-    "typescript": "^5.3.0",
-    "ts-node": "^10.9.0"
+    "@types/dotenv": "^6.1.1",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "@ckb-lumos/lumos": "^0.22.0",
+    "dotenv": "^17.4.2"
   }
 }
