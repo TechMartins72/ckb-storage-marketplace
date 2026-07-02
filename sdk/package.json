@@ -1,0 +1,23 @@
+{
+  "name": "ckb-storage-sdk",
+  "version": "0.1.0",
+  "description": "TypeScript SDK for the CKB decentralized storage marketplace",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@ckb-lumos/lumos": "^0.22.0",
+    "@ckb-lumos/codec": "^0.22.0",
+    "@nervosnetwork/ckb-sdk-utils": "^0.109.5",
+    "merkletreejs": "^0.3.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0",
+    "@types/node": "^20.0.0"
+  }
+}
